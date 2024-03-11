@@ -48,7 +48,7 @@ WHERE hire_date LIKE '03%'; -- % 뒤 : anything :03으로만 시작하면 상관없다
 
 SELECT first_name, last_name, hire_date
 FROM employees
-WHERE hire_date LIKE '%15'; -- 앞 % :anything :15로만 시작하면 상관없다
+WHERE hire_date LIKE '%05'; -- 앞 % :anything :15로만 시작하면 상관없다
 
 SELECT first_name, last_name, hire_date
 FROM employees

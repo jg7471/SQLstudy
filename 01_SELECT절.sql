@@ -7,8 +7,8 @@
 
 -- SELECT [컬럼명(어러 개 가능)] FROM [테이블 이름]
 SELECT
-    employees_id,
-    first_name,
+    employee_id, 
+    first_name, 
     last_name
 FROM
     employees; -- * ALL의 의미 --sql 대소문자 구분X but 관례는 키워드 대문자//식별자 소문자
@@ -50,7 +50,7 @@ FROM employees; --FROM부터 작성// SQL FROM부터 가장 먼저 실행됨 -- '('')홑따움표
 
 --DISTINCT(중복 행의 제거)
 SELECT department_id FROM employees;
-SELECT DISTINCT department_id FROM employees; --중복 제거
+SELECT DISTINCT department_id FROM employees; --중복 제거 : 분명한
 
 --ROWNUM,ROWID --주소값
 --ROWNUM : 쿼리에 의해 반환되는 행 번호를 출력 (페이징 할 때 씀)
