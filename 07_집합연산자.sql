@@ -8,12 +8,12 @@
 
 --UNION -> 중복 데이터를 허용하지 않음
 SELECT --10건
-    employee_id, first_name --아이디 위아래 같아야 집합 같아야함
+    employee_id, first_name, hire_date --아이디 위아래 같아야 집합 같아야함
 FROM employees
 WHERE hire_date LIKE '04%'
 UNION --중복을 허용하지 않는 합집합(Michael 비중복)
 SELECT --2건
-    employee_id, first_name
+    employee_id, first_name, hire_date
 FROM employees
 WHERE department_id = 20;
 
@@ -22,12 +22,12 @@ WHERE department_id = 20;
 
 -- UNION ALL -> 중복 데이터 허용
 SELECT --10건
-    employee_id, first_name
+    employee_id, first_name, hire_date
 FROM employees
 WHERE hire_date LIKE '04%'
 UNION ALL --중복을 허용하는 합집합(Michael 중복)
 SELECT --2건
-    employee_id, first_name
+    employee_id, first_name, hire_date
 FROM employees
 WHERE department_id = 20;
 
@@ -36,12 +36,12 @@ WHERE department_id = 20;
 
 --INTERSECT 교집합
 SELECT --10건
-    employee_id, first_name
+    employee_id, first_name, hire_date
 FROM employees
 WHERE hire_date LIKE '04%'
 INTERSECT
 SELECT --2건
-    employee_id, first_name
+    employee_id, first_name, hire_date
 FROM employees
 WHERE department_id = 20;
 
@@ -50,12 +50,12 @@ WHERE department_id = 20;
 
 --MINUS
 SELECT --10건 --기준점
-    employee_id, first_name
+    employee_id, first_name, hire_date
 FROM employees
 WHERE hire_date LIKE '04%'
 MINUS --Michael 제외됨
 SELECT --2건
-    employee_id, first_name
+    employee_id, first_name, hire_date
 FROM employees
 WHERE department_id = 20;
 

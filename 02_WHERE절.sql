@@ -48,7 +48,7 @@ WHERE hire_date LIKE '03%'; -- % 뒤 : anything :03으로만 시작하면 상관없다
 
 SELECT first_name, last_name, hire_date
 FROM employees
-WHERE hire_date LIKE '%05'; -- 앞 % :anything :15로만 시작하면 상관없다
+WHERE hire_date LIKE '%15'; -- 앞 % :anything :15로만 시작하면 상관없다
 
 SELECT first_name, last_name, hire_date
 FROM employees
@@ -64,7 +64,7 @@ WHERE commission_pct IS NULL; -- NULL 여부 확인  NULL 은 = 동등연산자로 비교 X
 SELECT * FROM employees
 WHERE commission_pct IS NOT NULL;
 
---AND, OR
+--AND, OR : AND >>> OR
 SELECT * FROM employees
 WHERE (job_id = 'IT_PROG'
 OR job_id = 'FI_MGR') --1번 조건
