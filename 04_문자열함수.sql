@@ -85,7 +85,7 @@ SELECT
 FROM dual;
 
 SELECT
-    REPLACE(REPLACE('My dream is a president', 'president', 'programmer'), ' ', '')
+    REPLACE(REPLACE('My dream is a president', 'president', 'programmer'), ' ', '★')
 FROM dual; --공백 문자 지워라
 
 --자바 : 함수의 호출문을 다른 함수의 매개값으로
