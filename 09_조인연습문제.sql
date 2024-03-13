@@ -154,3 +154,134 @@ SELECT * FROM employees, departments;
 
 
 -- 다 풀었다~!
+
+
+--240313
+
+/*
+문제 7.
+--EMPLOYEES 테이블과 DEPARTMENTS 테이블의 부서번호를 조인하고 SA_MAN 사원만의 사원번호, 이름, 
+급여, 부서명, 근무지를 출력하세요. (Alias를 사용)
+*/
+--내가 작성
+SELECT *
+FROM employees e
+JOIN departments d --(INNER) 생략 가능
+ON e.department_id = d.department_id
+WHERE e.job_id = 'SA_MAN';
+
+--해설
+SELECT
+    e.employee_id AS 사원번호,
+    e.first_name AS 이름,
+    e.salary AS 급여,
+    d.department_name AS 부서,
+    loc.city AS 근무지
+FROM employees e
+JOIN departments d --(INNER) 생략 가능
+ON e.department_id = d.department_id
+JOIN locations loc
+ON d.location_id = loc.location_id --요거 빼먹음
+WHERE e.job_id = 'SA_MAN'
+ORDER BY 사원번호;
+
+
+
+
+/*
+문제 8.
+-- employees, jobs 테이블을 조인 지정하고 job_title이 'Stock Manager', 'Stock Clerk'인 
+직원 정보만 출력하세요.
+*/
+
+--내가 작성
+SELECT *
+FROM employees e
+JOIN jobs j
+ON e.job_id = j.job_id
+WHERE
+j.job_title = 'Stock Manager'
+AND j.job_title = 'Stock Clerk'; -- OR 잘못적음
+
+--해설
+SELECT *
+FROM employees e
+JOIN jobs j
+ON e.job_id = j.job_id
+WHERE job_title IN('Stock Manager', 'Stock Clerk');
+
+
+
+/*
+문제 9.
+-- departments 테이블에서 직원이 없는 부서를 찾아 출력하세요. LEFT OUTER JOIN 사용
+*/
+
+--내가 작성
+SELECT *
+FROM departments d1
+LEFT OUTER JOIN departments d2
+ON d1.department_name = d2.department_name
+WHERE d1.manager_id IS NULL;
+
+--해설
+SELECT d.department_name
+FROM departments d --기준
+LEFT JOIN employees e
+ON d.department_id = e.department_id
+WHERE e.employee_id IS NULL;
+
+
+
+
+/*
+문제 10. 
+-join을 이용해서 사원의 이름과 그 사원의 매니저 이름을 출력하세요
+힌트) EMPLOYEES 테이블과 EMPLOYEES 테이블을 조인하세요.
+*/
+
+--내가 작성
+SELECT
+    e1.employee_id, e1.first_name, e1.manager_id,
+    e2.first_name, e2.employee_id
+
+FROM employees e1
+LEFT JOIN employees e2 --결국 매니져도 사원임
+ON e1.manager_id = e2.employee_id;
+
+
+--해설
+SELECT
+    e1.first_name,
+    e2.first_name AS manager_name
+FROM employees e1
+JOIN employees e2
+ON e1.manager_id = e2.employee_id;
+
+
+/*
+문제 11. 
+-- EMPLOYEES 테이블에서 left join하여 관리자(매니저)id와, 매니저의 이름, 매니저의 급여 까지 출력하세요.
+-- 매니저 아이디가 없는 사람은 배제하고 급여는 역순으로 정렬하세요.
+*/
+
+--내가 작성 : 아이디 없는 사람 쓰려면 left join 쓰면 됨
+SELECT
+    e1.manager_id, e1.first_name, e1.salary
+FROM employees e1
+LEFT JOIN employees e2
+ON e1.manager_id = e2.employee_id
+WHERE e1.manager_id IS NOT NULL
+ORDER BY e1.salary DESC;
+
+--해설
+SELECT
+    e1.employee_id, e1.first_name,e1.manager_id, 
+    e2.first_name AS manager_name, e2.salary
+FROM employees e1
+LEFT JOIN employees e2
+ON e1.manager_id = e2.employee_id
+WHERE e1.manager_id IS NOT NULL
+ORDER BY e2.salary DESC;
+
+
