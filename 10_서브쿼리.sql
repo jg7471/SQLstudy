@@ -52,7 +52,7 @@ WHERE job_id IN (SELECT job_id FROM employees
 SELECT * FROM employees
 WHERE salary IN (SELECT salary FROM employees
                 WHERE first_name = 'David'); --first_name이 David인 사람들의 급여와 같은 급여를 받는 사람들
-                                             -- 4800 6800 9500 : 같은 값
+                                             -- 4800 6800 9500 : 셋 중 하나 같은 값
                 
 --ANY, SOME(오라클 전용 ANY와 동일한 기능) : 값을 서브쿼리에 의해 리턴된 각각의 값과 비교해서
 --하나라도 만족하면 조회 대상에 포함됨
@@ -60,14 +60,14 @@ WHERE salary IN (SELECT salary FROM employees
 SELECT * FROM employees
 WHERE salary > ANY (SELECT salary FROM employees
                 WHERE first_name = 'David'); --서브쿼리 가장 작은 결과보다 커야함
-                                             -- 4800 6800 9500 : 4800 이상 
+                                             -- 4800 6800 9500 : 가장 작은 4800 이상 
                 
 --ALL : 값을 서브쿼리에 의해 리턴된 각각의 값과 모두 비교해서
 --전부 다 일치해야 조회대상에 포함됨
 --David라는 사람이 여러 명인데, 그 중에 가장 많은 급여를 받는 David보다 급여가 높은 사람을 조회
 SELECT * FROM employees
 WHERE salary > ALL (SELECT salary FROM employees
-                WHERE first_name = 'David');-- 4800 6800 9500 : 9500 이상 
+                WHERE first_name = 'David');-- 4800 6800 9500 : 가장 큰 9500 이상 
                 
 -- EXISTS : 서브쿼리가 하나 이상의 행을 반환하면 참으로 간주
 -- job_history에 존재하는 직원이 employees에도 존재한다면 조회대상에 포함
@@ -75,16 +75,18 @@ WHERE salary > ALL (SELECT salary FROM employees
 -- EXISTS 연산자가 1이 조회가 될 때, 데이터가 존재한다는 것을 판단하여 employees에서 해당 사원의 모든 정보를 조회
 SELECT * FROM employees e
 WHERE EXISTS (SELECT 1 FROM job_history jh
-             WHERE e.employee_id = jh.employee_id); --1 컬럼의 존재여부 확인
+             WHERE e.employee_id = jh.employee_id); --1 컬럼의 존재여부 확인 : *(암거나) 찍어도 됨 (true/flase 확인만)
+             --조회만 되면 전체 대상에 포함하겠다
              
 SELECT * FROM employees e
 WHERE EXISTS (SELECT 1 FROM departments d
-              WHERE e.department_id = d.department_id);             
+              WHERE e.department_id = d.department_id);
+              --oracle true - false 없음 WHERE 1 = 2
 
---@@@ 잘못적었나?
+
 SELECT * FROM employees e
 WHERE EXISTS (SELECT 1 FROM departments d
-             WHERE department_id = 140);
+             WHERE department_id = 90);
 
 
 --------------------------------------------------------------------------------
@@ -234,7 +236,7 @@ WHERE rn > 10 AND rn <= 20; --between 사용해도 可 : 오류발생
 FROM -> WHERE -> GROUP BY -> HAVING -> SELECT -> ORDER BY
 */
 
-SELECT * --오라클
+SELECT * --tb2.rn, tb2.salary --오라클
     FROM
     (
     SELECT
@@ -246,7 +248,7 @@ SELECT * --오라클
         FROM employees
         ORDER BY salary DESC
         ) tbl
-    )
+    )--tb2
 WHERE rn > 10 AND rn < 20;
 --게시판 페이징 알고리즘 : 
 
