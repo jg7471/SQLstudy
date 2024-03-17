@@ -53,7 +53,7 @@ SELECT --10건 --기준점
     employee_id, first_name, hire_date
 FROM employees
 WHERE hire_date LIKE '04%'
-MINUS --Michael 제외됨
+MINUS --Michael(중복값) 제외됨
 SELECT --2건
     employee_id, first_name, hire_date
 FROM employees

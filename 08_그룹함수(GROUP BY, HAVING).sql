@@ -133,6 +133,14 @@ ORDER BY AVG(salary) DESC;
 (TO_CHAR() 함수를 사용해서 연도만 변환합니다. 그리고 그것을 그룹화 합니다.)
 */
 
+--해설
+SELECT
+    TO_CHAR(hire_date, 'yy') AS 입사년도,
+    COUNT(*) AS 사원수
+FROM employees
+GROUP BY TO_CHAR(hire_date, 'yy')
+ORDER BY 입사년도;
+
 --내가 작성 1차
 SELECT
     first_name, TO_CHAR(hire_date, '99/99/99 99:99:99')
@@ -161,13 +169,7 @@ GROUP BY TO_CHAR(hire_date, 'yy')
 ORDER BY TO_CHAR(hire_date, 'yy') DESC;
 
 
---해설
-SELECT
-    TO_CHAR(hire_date, 'yy') AS 입사년도,
-    COUNT(*) AS 사원수
-FROM employees
-GROUP BY TO_CHAR(hire_date, 'yy')
-ORDER BY 입사년도;
+
 
 
 
@@ -181,8 +183,6 @@ ORDER BY 입사년도;
 급여가 5000 이상(WHERE 일반조건)인 사원들의 부서별 평균 급여를 출력하세요. 
 단 부서 평균 급여가 7000이상(GROUP 그룹화조건)인 부서만 출력하세요.
 */
-
-
 
 
 --내가 작성

@@ -49,7 +49,7 @@ GRANT RESOURCE, CONNECT, DBA TO user1; --모든 권한 주기
 REVOKE RESOURCE, CONNECT, DBA FROM user1; --권한 뺏겠다
 
 --테이블이 저장되는 장소인 테이블 스페이스를 설정하는 코드
---기본적으로 제공되는 users 테이블 스페이스의 사용량을 무제한으로 지정
+--기본적으로 제공되는 users 테이블 스페이스의 사용량을 무.제한으로 지정
 ALTER USER user1
 DEFAULT TABLESPACE users
 QUOTA UNLIMITED ON users;

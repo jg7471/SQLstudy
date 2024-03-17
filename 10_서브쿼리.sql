@@ -253,7 +253,7 @@ WHERE rn > 10 AND rn < 20;
 --게시판 페이징 알고리즘 : 
 
 --ANSI 조인방식
-SELECT @@@
+SELECT --@@@
     e.employee_id, e.salary,
     avg_salaries.average_salary
 FROM employees e JOIN

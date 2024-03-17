@@ -28,7 +28,7 @@ EMPLOYEES 테이블에서 phone_number컬럼은 ###.###.####형태로 저장되어 있다
 */
 
 SELECT
-    CONCAT('(02)', SUBSTR(phone_number, 5))
+    CONCAT('(02)', SUBSTR(phone_number, 5)) --안 부터
 FROM employees;
 
 --함수 사용시 결과값만 나옴 : 데이터 변하지 않음

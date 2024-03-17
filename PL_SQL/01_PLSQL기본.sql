@@ -70,46 +70,45 @@ END; --드래그 한 뒤 F9
 
 
 --내가 작성
-DECLARE
-    v_dep_employee_id employees.employee_id%TYPE;
-    v_dep_last_name employees.last_name%TYPE;
-    v_dep_email employees.email%TYPE;
-    v_dep_hire_date employees.hire_date%TYPE;
-    v_dep_job_id employees.job_id%TYPE;
-    
-BEGIN
-
-    SELECT
-    e.employee_id, e.last_name, e.email, e.hire_date, e.job_id
-    
-    INTO
-
-    INSERT INTO employees
-    VALUES(999,'LEE','happysql','05/10/13',ST_MAN);
-    
-    FROM employees e
-    LEFT JOIN departments d
-    ON e.department_id = d.department_id
-    WHERE employee_id > MAX(employee_id)
-
-END;
+--DECLARE
+--    v_dep_employee_id employees.employee_id%TYPE;
+--    v_dep_last_name employees.last_name%TYPE;
+--    v_dep_email employees.email%TYPE;
+--    v_dep_hire_date employees.hire_date%TYPE;
+--    v_dep_job_id employees.job_id%TYPE;
+--    
+--BEGIN
+--
+--    SELECT
+--    e.employee_id, e.last_name, e.email, e.hire_date, e.job_id
+--    
+--    INTO
+--
+--    INSERT INTO employees
+--    VALUES(999,'LEE','happysql','05/10/13',ST_MAN);
+--    
+--    FROM employees e
+--    LEFT JOIN departments d
+--    ON e.department_id = d.department_id
+--    WHERE employee_id > MAX(employee_id)
+--
+--END;
 
 --해설
 DECLARE
     v_max_empno employees.employee_id%TYPE;
-
 BEGIN
     SELECT
         MAX(employee_id)
     INTO
         v_max_empno
     FROM employees;
-
+    
     INSERT INTO emps
         (employee_id, last_name, email, hire_date, job_id)
     VALUES
         (v_max_empno + 1, 'steven', 'stevenjobs', sysdate, 'CEO');
+    
 END;
 
 SELECT * FROM emps;
-

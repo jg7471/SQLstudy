@@ -106,6 +106,7 @@ FROM employees;
 사원을 다음과 같은 형태의 결과를 출력하도록 쿼리를 작성해 보세요.
 조건 1) 근속년수가 높은 사원 순서대로 결과가 나오도록 합니다
 */
+
 SELECT
     employee_id AS 사원번호,
     first_name AS 이름,
@@ -126,6 +127,22 @@ EMPLOYEES 테이블의 manager_id컬럼을 확인하여 first_name, manager_id, 직급을 출력
 나머지는 ‘임원’ 으로 출력합니다.
 조건 1) department_id가 50인 사람들을 대상으로만 조회합니다
 */
+
+
+--복습
+SELECT first_name, manager_id,
+    (CASE manager_id
+        WHEN 100 THEN '사원'
+        WHEN 120 THEN '주임'
+        ELSE '임원'
+        END)
+FROM employees
+WHERE department_id = 50;
+
+
+
+
+
 
 SELECT
     first_name,
