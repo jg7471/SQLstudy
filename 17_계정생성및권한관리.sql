@@ -6,6 +6,8 @@ SELECT * FROM all_users;
 --계정 생성 명령
 CREATE USER user1 IDENTIFIED BY user1;
 
+--굳이 커맨드라인에서 실행 안해도 괜찮음
+
 --DDL create alter truncate drop
 --DML select isert update delete
 --TCL commit rollback savepoint
@@ -48,7 +50,7 @@ GRANT RESOURCE, CONNECT, DBA TO user1; --모든 권한 주기
 
 REVOKE RESOURCE, CONNECT, DBA FROM user1; --권한 뺏겠다
 
---테이블이 저장되는 장소인 테이블 스페이스를 설정하는 코드
+--테이블이 저장되는 장소인 테이블 스페이스를 설정하는 코드 : 거의 할 일 없음
 --기본적으로 제공되는 users 테이블 스페이스의 사용량을 무.제한으로 지정
 ALTER USER user1
 DEFAULT TABLESPACE users

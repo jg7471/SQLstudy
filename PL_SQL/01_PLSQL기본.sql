@@ -6,6 +6,10 @@
 - 쿼리문의 집합으로 어떠한 동작을 일괄 처리하기 위한 용도로 사용합니다.
 */
 
+
+--실행 방법 : ctrl f10, 드래그 + f9(PLSQL 있을시)
+
+
 SET SERVEROUTPUT ON; --출력문 활성화 --드래그 후 우선 실행
 
 
@@ -16,7 +20,7 @@ DECLARE --변수를 선언하는 구간(선언부)
 
 BEGIN --코드를 실행하는 구간(실행부)
     
-    emp_num := 10; --대입 연산자 (같다 JAVa의 =)
+    emp_num := 10; --대입 연산자 (같다 JAVA의 =)
     DBMS_OUTPUT.put_line(emp_num);
     DBMS_OUTPUT.put_line('Hello pl/sql!');
 
@@ -27,7 +31,7 @@ END; --PL/SQL이 끝나는 구간(종료부) --드래그 후 F9 : 익명 블록
 
 /*
 - DML문
-DDL(create... )문은 사용이 불가능하고, 일반적으로 SQL문의 SELECT 등을 사용하는데, 
+DDL(select isert update delete)문은 사용이 불가능하고, 일반적으로 SQL문의 SELECT 등을 사용하는데, 
 특이한 점은 SELECT절 아래에 INTO절을 사용해서 변수에 할당할 수 있습니다.
 */
 
@@ -47,13 +51,14 @@ BEGIN
         
     FROM employees e
     LEFT JOIN departments d
-    ON e.department_id = d.department_id
+    ON e.department_id = d.department_id --department_name 표기하려고 연결
     WHERE e.employee_id = 103;
 
     dbms_output.put_line(v_emp_name || '-' || v_dep_name);    
 
 END; --드래그 한 뒤 F9
 
+SELECT * FROM employees;
 
 
 -- 2. employees 테이블에서 사원번호가 제일 큰 사원을 찾아낸 뒤 (MAX 함수 사용)
