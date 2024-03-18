@@ -24,6 +24,7 @@ CREATE TABLE tbl_user_backup(
     id VARCHAR2(20) PRIMARY KEY,
     name VARCHAR2(20),
     address VARCHAR2(30),
+    --백업용 추가입력
     update_date DATE DEFAULT sysdate, -- 정보 변경 시간(기본값: INSERT 되는 시간) --인서트할 때 sysdate 자동 입력됨
     m_type VARCHAR2(10), -- 변경 타입 --삭제 or 수정
     m_user VARCHAR2(20) -- 변경한 사용자 --흔적
@@ -31,18 +32,20 @@ CREATE TABLE tbl_user_backup(
 
 
 
---AFTER 트리거 여기 先 실행
+--AFTER 트리거 생성 여기 先 실행
 CREATE OR REPLACE TRIGGER trg_user_backup
+    --트리거 조건
     AFTER UPDATE OR DELETE
     ON tbl_user
     FOR EACH ROW --모든 행에 적용
+    
 DECLARE
     --트리거 몸통 : 변수선언 = --m_type
     v_type VARCHAR2(10);
 
 BEGIN
     --현재 트리거가 발동된 상황이 UPDATE인지 DELETE인지 파악하는 조건문
-    IF UPDATING THEN -- UPDATING은 시스템 자체에서 상태에 대한 내용을 지원하는 빌트인 기본 구문. //INSERTING
+    IF UPDATING THEN -- UPDATING은 시스템 자체에서 상태에 대한 내용을 지원하는 빌트인 <오라클>기본 구문. //INSERTING
         v_type := '수정'; --m_type
     ELSIF DELETING THEN
         v_type := '삭제';

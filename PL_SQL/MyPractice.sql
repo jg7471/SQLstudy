@@ -34,3 +34,63 @@ BEGIN
 
 END; 
 
+
+
+
+
+
+DECLARE/IS --<procedure>
+    v_max_empno employees.employee_id%TYPE;
+    
+BEGIN
+    SELECT
+        MAX(employee_id)
+    INTO
+        v_max_empno
+    FROM employees;
+    WHERE
+    
+    INSERT INTO emps
+        (employee_id, last_name, email, hire_date, job_id)
+    VALUES
+        (v_max_empno + 1, 'steven', 'jobs', sysdate, 'CEO');
+    IF - ELSIF - END
+END
+
+
+
+IF THEN
+ELSIF
+THEN
+ELSE
+ELSIF
+END IF
+
+CASE
+WHEN THEN
+ELSE
+END CASE
+
+
+DECLARE
+    v_count NUMBER := 1;
+WHILE '조건'/FOR i IN 1..9
+LOOP
+v_count := v_count +1; -- ++임
+CONTINUE WHEN MOD(i, 2) = 0;
+
+END LOOP
+
+
+
+INSERT INTO board
+        VALUES(b_seq.NEXTVAL, 'test'||v_num, 'title'||v_num); --시퀸스 삽입
+
+
+CREATE PROCEDURE 함수명 (매개변수 IN OUT IN AND OUT)
+CREATE OR REPLACE PROCEDURE 함수명 (매개변수)
+EXEC () 실행
+dbms_output.put_line
+
+
+ALTER TABLE depts ADD CONSTRAINT depts_deptno_pk PRIMARY KEY(department_id); --테이블 수정 : 제약조건 변경@ 속성변경
